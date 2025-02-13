@@ -25,6 +25,7 @@ mongoose
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // API Routes
+app.use(cors({ origin: "https://access-puzzle-app.vercel.app/" }));
 app.use('/api/auth', authRoutes);
 app.use('/api/puzzle', puzzleRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
