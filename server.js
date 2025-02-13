@@ -1,34 +1,32 @@
-// server/server.js
+// server.js (updated)
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
-const puzzleRoutes = require('./routes/puzzle');
-const leaderboardRoutes = require('./routes/leaderboard');
 
 const app = express();
 
-// Middleware
-app.use(cors({ origin: "https://access-puzzle-app.vercel.app/" }));
-app.use(bodyParser.json());
+// CORS Middleware
+app.use(cors({
+  origin: "https://access-puzzle-app.vercel.app",
+  credentials: true,
+}));
+app.use(express.json());
 
-// Connect to MongoDB
+// MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
-// API Routes
+// Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/puzzle', puzzleRoutes);
-app.use('/api/leaderboard', leaderboardRoutes);
 
-// Start server
+// Start Server
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
