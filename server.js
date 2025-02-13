@@ -12,7 +12,7 @@ const leaderboardRoutes = require('./routes/leaderboard');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "https://access-puzzle-app.vercel.app/" }));
 app.use(bodyParser.json());
 
 // Connect to MongoDB
@@ -25,7 +25,6 @@ mongoose
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // API Routes
-app.use(cors({ origin: "https://access-puzzle-app.vercel.app/" }));
 app.use('/api/auth', authRoutes);
 app.use('/api/puzzle', puzzleRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
