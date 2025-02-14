@@ -15,7 +15,7 @@ app.use(cors({
   origin: "https://access-puzzle-app.vercel.app",
   credentials: true,
 }));
-app.use(express.json());
+//app.use(express.json());
 app.use(bodyParser.json());
 
 // MongoDB Connection
