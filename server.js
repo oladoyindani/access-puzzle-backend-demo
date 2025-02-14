@@ -5,6 +5,8 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const puzzleRoutes = require('./routes/puzzle');
+const leaderboardRoutes = require('./routes/leaderboard');
 
 const app = express();
 
@@ -26,6 +28,8 @@ mongoose
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/puzzle', puzzleRoutes);
+app.use('/api/leaderboard', leaderboardRoutes);
 
 // Start Server
 const port = process.env.PORT || 3000;
